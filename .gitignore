@@ -1,0 +1,22 @@
+# backend files
+backend/.env
+backend/db.sqlite3
+backend/package-lock.json
+backend/env/
+backend/node_modules/
+backend/static/
+backend/backend/__pycache__/
+backend/base/__pycache__/
+backend/base/migrations/__pycache__/
+backend/base/urls/__pycache__/
+backend/base/views/__pycache__/
+
+# frontend files
+frontend/src/components/payment/promise.component.tsx
+frontend/dist/
+frontend/node_modules/
+frontend/package-lock.json
+
+#misc
+.vscode/**
+**/.DS_Store

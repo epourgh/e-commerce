@@ -1,0 +1,41 @@
+.breadcrumb {
+    color: rgb(82, 82, 82);
+}
+
+.numInStock {
+    border: 1px solid rgba(233, 233, 233, 0);
+    background: #e0e1e2;
+    color: #5a5a5a;
+    width: 4em;
+    height: 2.6em;
+    border-radius: .3em;
+    font-weight: 900;
+    margin-right: .5em;
+}
+
+.star {
+    float: left;
+}
+
+.star:before {
+    display: inline-block;
+    font-size: 2em;
+    margin: 0;
+    cursor: pointer;
+    font-family: FontAwesome;
+    content: '\2605';
+    /* full star */
+}
+
+.twoColGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.columnA {
+    padding: 0 1em;
+}
+
+.columnB {
+    padding: 0 1em;
+}

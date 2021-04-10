@@ -1,0 +1,40 @@
+.minHeight {
+    min-height: 85vh;
+}
+
+.hr {
+    border: 0;
+    border-top: 1px solid rgb(219, 219, 219);
+}
+
+.alertText {
+    color: red;
+    font-weight: 900;    
+}
+
+.alertTextSm {
+    color: red;
+    font-weight: 900;
+    font-size: .85em;
+}
+
+.fontReduceMargin {
+    margin: .5em 0;
+}
+
+.cardMinHeight {
+    height: 27em;
+}
+
+.itemSpacing {
+    border: 1em #000 solid !important;
+}
+
+.starStyle {
+    color: rgb(220, 147, 230);
+}
+
+
+button:hover .starStyle {
+    color: rgb(226, 6, 255);
+}

@@ -1,0 +1,68 @@
+{
+  "compilerOptions": {
+    // "strict": true,
+    "noImplicitAny": false,
+    "outDir": "./dist/",
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    // "allowSyntheticDefaultImports": true,
+    "paths": {
+        "redux": [
+            "./node_modules/redux/dist/redux"
+        ],
+        "react-redux": [
+            "./node_modules/react-redux/dist/react-redux"
+        ],
+        "redux-thunk": [
+            "./node_modules/redux-thunk/dist/redux-thunk"
+        ],
+        "redux-devtools-extension": [
+            "./node_modules/redux-devtools-extension/index.js"
+        ],
+        "semantic-ui-react": [
+            "./node_modules/semantic-ui-react/dist/es/index.js"
+        ],
+        "@fortawesome/react-fontawesome": [
+            "./node_modules/@fortawesome/react-fontawesome/index.js"
+        ],
+        "@fortawesome/free-solid-svg-icons": [
+            "./node_modules/@fortawesome/free-solid-svg-icons/index.js"
+        ],
+        "@fortawesome/react-common-types": [
+            "./node_modules/@fortawesome/react-common-types/index.js"
+        ],
+        "@fortawesome/fontawesome-svg-core": [
+            "./node_modules/@fortawesome/fontawesome-svg-core/index.js"
+        ],
+        "axios": [
+            "./node_modules/axios/dist/axios"
+        ],
+        "@redux-d-ts": [
+            "./node_modules/redux/index.d.ts"
+        ],
+        "moment": [
+            "./node_modules/moment/dist/moment"
+        ],
+        "@stripe/react-stripe-js": [
+            "./node_modules/@stripe/react-stripe-js/dist/react-stripe.d.ts"
+        ],
+        "@stripe/stripe-js": [
+            "./node_modules/@stripe/stripe-js/dist/stripe.js"
+        ],
+        "react-stripe-elements": [
+            "./node_modules/react-stripe-elements/dist/react-stripe-elements"
+        ]
+    },
+    "plugins": [{ "name": "typescript-plugin-css-modules/index" }]
+  },
+  "exclude": [
+    "node_modules",
+    "/src/state/reducers/index.ts"
+  ]
+}

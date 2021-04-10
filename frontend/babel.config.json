@@ -1,0 +1,23 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env", {
+          "modules": "commonjs"
+      }
+    ],
+    [
+      "@babel/react", {
+          "modules": "commonjs"
+      }
+    ],
+    [
+      "@babel/typescript", {
+          "modules": "commonjs"
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-modules-commonjs"
+  ]
+}
