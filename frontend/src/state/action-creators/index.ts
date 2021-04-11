@@ -47,6 +47,31 @@ export const fetchProductList = (params: Params = {}) => {
     }
 }
 
+
+export const fetchProductListByCategory = (params: Params = {}) => {
+    return async (dispatch: Dispatch<Action>) => {
+        dispatch({
+            type: ActionType.GET_PRODUCT_LIST_BY_ID
+        })
+
+        try {
+            const request = `${backendURL}/api/products/category/${params.id}`
+            const { data } = (isEmpty(params)) ? await axios.get(request) : await axios.get(request, { params });
+
+            dispatch({
+                type: ActionType.GET_PRODUCT_LIST_BY_ID_SUCCESS,
+                payload: data
+            })
+
+        } catch (err) {
+            dispatch({
+                type: ActionType.GET_PRODUCT_LIST_BY_ID_ERROR,
+                payload: err.message
+            })
+        }
+    }
+}
+
 export const fetchProductDetails = (id: number, params: Params = {}) => {
     return async (dispatch: Dispatch<Action>) => {
         dispatch({

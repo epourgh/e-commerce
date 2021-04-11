@@ -28,6 +28,9 @@
         "semantic-ui-react": [
             "./node_modules/semantic-ui-react/dist/es/index.js"
         ],
+        "react-responsive-carousel": [
+            "./node_modules/react-responsive-carousel/lib/ts/index.d.ts"
+        ],
         "@fortawesome/react-fontawesome": [
             "./node_modules/@fortawesome/react-fontawesome/index.js"
         ],

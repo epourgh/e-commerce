@@ -25,6 +25,12 @@ const ProductListReducer = (
             return { loading: false, error: null, data: action.payload }
         case ActionType.GET_PRODUCT_LIST_ERROR:
             return { loading: false, error: action.payload, data: [] }
+        case ActionType.GET_PRODUCT_LIST_BY_ID:
+            return { loading: true, error: null, data: [] }
+        case ActionType.GET_PRODUCT_LIST_BY_ID_SUCCESS:
+            return { loading: false, error: null, data: action.payload }
+        case ActionType.GET_PRODUCT_LIST_BY_ID_ERROR:
+            return { loading: false, error: action.payload, data: [] }
         default:
             return state;
     }

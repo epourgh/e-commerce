@@ -17,6 +17,22 @@ interface ProductListErrorAction {
     payload: string;
 }
 
+// Product List by Category Id
+
+interface ProductListByIdAction {
+    type: ActionType.GET_PRODUCT_LIST_BY_ID;
+}
+
+interface ProductListByIdSuccessAction {
+    type: ActionType.GET_PRODUCT_LIST_BY_ID_SUCCESS;
+    payload: ShopList[];
+}
+
+interface ProductListByIdErrorAction {
+    type: ActionType.GET_PRODUCT_LIST_BY_ID_ERROR;
+    payload: string;
+}
+
 // Product Details
 
 interface ProductDetailsAction {
@@ -364,4 +380,7 @@ export type Action =
     | GetFavoriteByIdErrorAction
     | CheckIfReviewedAction
     | CheckIfReviewedSuccessAction
-    | CheckIfReviewedErrorAction;
+    | CheckIfReviewedErrorAction
+    | ProductListByIdAction 
+    | ProductListByIdSuccessAction 
+    | ProductListByIdErrorAction;

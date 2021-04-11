@@ -2,6 +2,10 @@ export enum ActionType {
     GET_PRODUCT_LIST = 'get_product_list_request',
     GET_PRODUCT_LIST_SUCCESS = 'get_product_list_success',
     GET_PRODUCT_LIST_ERROR = 'get_product_list_error',
+
+    GET_PRODUCT_LIST_BY_ID = 'get_product_list_by_id_request',
+    GET_PRODUCT_LIST_BY_ID_SUCCESS = 'get_product_list_by_id_success',
+    GET_PRODUCT_LIST_BY_ID_ERROR = 'get_product_list_by_id_error',
     
     GET_PRODUCT_DETAILS = 'get_product_details_request',
     GET_PRODUCT_DETAILS_SUCCESS = 'get_product_details_success',

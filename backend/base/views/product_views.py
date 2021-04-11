@@ -18,7 +18,7 @@ def getProducts(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def getProductsByCategory(request):    
+def getProductsByCategory(request, pk):    
     category = Category.objects.get(_id=pk)
     products = Product.objects.filter(category=category)
 
