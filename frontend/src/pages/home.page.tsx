@@ -23,6 +23,13 @@ const HomePage: React.FC = () => {
     return (
         <Container className={globalStyles.minHeight}>
             <br/>
+            <Segment>
+                <Header as='h2'>
+                    {(userInfo.data._id) ? <>Welcome, {userInfo.data.username}!</> : <>Sign In</>}
+                </Header>
+                <p>{(userInfo.data._id) ? <>Take a look at our latest items!</> : <>Thank about signing in or registering with us to take advantage of our deals!</>}</p>
+            </Segment>
+            
             <Carousel>
                 <div>
                     <img src="/images/electronics-carousal.png" />
@@ -38,13 +45,7 @@ const HomePage: React.FC = () => {
                 </div>
             </Carousel>
 
-            <Segment>
-                <Header as='h2'>
-                    {(userInfo.data._id) ? <>Welcome, {userInfo.data.username}!</> : <>Sign In</>}
-                </Header>
-                <p>{(userInfo.data._id) ? <>Take a look at our latest items!</> : <>Thank about signing in or registering with us to take advantage of our deals!</>}</p>
-            </Segment>
-            <h2>Shop by categories...</h2>
+            <h3>Shop by category...</h3>
             <Grid relaxed columns={5}>
                 <Grid.Column className={styles.card}>
                     <Link to='./category/1'>
@@ -81,7 +82,7 @@ const HomePage: React.FC = () => {
                 (viewed[0].id !== 0) 
                 ?
                 <>
-                    <h2>Recently viewed items...</h2>
+                    <h3>Recently viewed items...</h3>
                     <Grid relaxed columns={5}>
                         {
                             viewed.map((viewedProduct) => {
