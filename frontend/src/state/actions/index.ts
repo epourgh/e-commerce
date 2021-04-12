@@ -323,6 +323,13 @@ interface CheckIfReviewedErrorAction {
     payload: string;
 }
 
+// Add Page to Viewed
+
+interface AddPageToViewedAction {
+    type: ActionType.ADD_PAGE_TO_VIEWED;
+    payload: { id: number, qty: number, product: ShopList };
+}
+
 export type Action =
     | ProductListAction
     | ProductListSuccessAction
@@ -383,4 +390,5 @@ export type Action =
     | CheckIfReviewedErrorAction
     | ProductListByIdAction 
     | ProductListByIdSuccessAction 
-    | ProductListByIdErrorAction;
+    | ProductListByIdErrorAction
+    | AddPageToViewedAction;

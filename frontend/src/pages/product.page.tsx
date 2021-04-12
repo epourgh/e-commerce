@@ -21,7 +21,7 @@ const ProductPage: React.FC<ProductProps> = ({ match }) => {
     const [reviewComment, setReviewComment] = useState('');
     const [rating, setRating] = useState(4.5);
     const [isUserFavorite, setIsUserFavorite] = useState(0);
-    const { postReview, checkIfReviewed, fetchProductDetails, getFavoriteById, setFavorite, unsetFavorite } = useActions();
+    const { postReview, checkIfReviewed, fetchProductDetails, getFavoriteById, setFavorite, unsetFavorite, AddPageToViewed } = useActions();
 
     const [product, setProduct] = useState<ShopList>({
         _id: 0,
@@ -48,19 +48,13 @@ const ProductPage: React.FC<ProductProps> = ({ match }) => {
 
     useEffect(() => {
         if (!isEmpty(productDetails.data)) {
-            console.log(productDetails)
             let data = productDetails.data;
+            AddPageToViewed({ id: match.params.id, product: data })
             setProduct(data)
         }
     }, [productDetails])
 
     useEffect(() => {
-        console.log('isReviewed')
-        console.log(isReviewed)
-    }, [isReviewed])
-
-    useEffect(() => {
-        console.log(userFavorite.productPage)
         if (userFavorite.productPage === 'liked') {
             setIsUserFavorite(1)
         } else {

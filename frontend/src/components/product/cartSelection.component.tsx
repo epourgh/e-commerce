@@ -36,7 +36,6 @@ const CartSelection: React.FC<CartSelection> = ({product}): JSX.Element | null =
 
     const addToCarthandler: React.FC<AddToCart> = (addProduct):null => {
         if (qty) {
-            console.log(qty)
             cart('ADD', addProduct)
         }
         return null;

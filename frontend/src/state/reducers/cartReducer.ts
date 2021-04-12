@@ -3,7 +3,7 @@ import { ActionType } from '../action-types/index'
 import { Product, SampleCartReducer } from '../data-types/index';
 
 const initialState = {
-    product: [{ id: 0, qty: 0, product: { _id: 0, name: '', image: '', description: '', brand: '', category: '', countInStock: 0, rating: 0, numReviews: 0, price: 0, token: '' } }],
+    product: [{ id: 0, qty: 0, product: { _id: 0, name: '', image: '', description: '', brand: '', category: '', countInStock: 0, rating: 0, numReviews: 0, numFavorites: 0, price: 0, token: '' } }],
     total: {
         count: 0,
         cost: 0
@@ -11,6 +11,8 @@ const initialState = {
     address: { address: '', city: '', country: '', postalCode: '' },
     payment: ''
 }
+
+
 
 const addToLocalStorage = (data) => localStorage.setItem('cart', JSON.stringify({ data }));
 

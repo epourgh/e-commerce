@@ -12,10 +12,11 @@ import { Carousel } from 'react-responsive-carousel';
 
 const HomePage: React.FC = () => {
 
-    const [productList, userInfo] = useTypedSelector((state) => [state.productList, state.userInfo]);
+    const [productList, userInfo, viewed] = useTypedSelector((state) => [state.productList, state.userInfo, state.viewed]);
     const { fetchProductList } = useActions();
 
     useEffect(() => {
+        console.log(viewed)
         fetchProductList({}); /* eslint-disable react-hooks/exhaustive-deps */
     }, [])
 
@@ -43,6 +44,7 @@ const HomePage: React.FC = () => {
                 </Header>
                 <p>{(userInfo.data._id) ? <>Take a look at our latest items!</> : <>Thank about signing in or registering with us to take advantage of our deals!</>}</p>
             </Segment>
+            <h2>Shop by categories...</h2>
             <Grid relaxed columns={5}>
                 <Grid.Column className={styles.card}>
                     <Link to='./category/1'>
@@ -75,6 +77,28 @@ const HomePage: React.FC = () => {
                     </Link>
                 </Grid.Column>
             </Grid>
+            {
+                (viewed[0].id !== 0) 
+                ?
+                <>
+                    <h2>Recently viewed items...</h2>
+                    <Grid relaxed columns={5}>
+                        {
+                            viewed.map((viewedProduct) => {
+                                return (
+                                    <Grid.Column className={styles.card}>
+                                        <Link to={`./product/${viewedProduct.id}`}>
+                                            <Image src={viewedProduct.product.image} className={styles.gridImage} />
+                                            <h5>{viewedProduct.product.name}</h5>
+                                        </Link>
+                                    </Grid.Column>
+                                )
+                            })
+                        }
+                    </Grid>
+                </>
+                :<></>
+            }
             <br /><br />
         </Container>
     );

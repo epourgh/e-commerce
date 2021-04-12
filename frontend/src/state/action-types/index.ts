@@ -80,4 +80,6 @@ export enum ActionType {
     GET_FAVORITE_BY_ID = 'get_favorite_by_id_request',
     GET_FAVORITE_BY_ID_SUCCESS = 'get_favorite_by_id_success',
     GET_FAVORITE_BY_ID_ERROR = 'get_favorite_by_id_error',
+
+    ADD_PAGE_TO_VIEWED = 'add_page_to_viewed',
 }

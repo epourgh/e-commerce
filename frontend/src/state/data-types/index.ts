@@ -8,7 +8,7 @@ export interface Address { address: string, city: string, country: string, posta
 
 export interface Product {
     id: number;
-    qty: number;
+    qty?: number;
     product: ShopList;
 }
 

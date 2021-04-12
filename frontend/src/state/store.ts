@@ -17,10 +17,18 @@ if (localStorage.getItem('cart')) {
     cart = { product: [], total: { count: 0, cost: 0 }, address: { address: '', city: '', country: '', postalCode: '' }, payment: '' };
 }
 
+let viewed;
+if (localStorage.getItem('viewed')) {
+    viewed = JSON.parse(localStorage.getItem('viewed')).data
+} else {
+    viewed = [{ product: [], total: { count: 0, cost: 0 }, address: { address: '', city: '', country: '', postalCode: '' }, payment: '' }];
+}
+
 const initialState = {
     productList: { data: [], error: null, loading: false},
     userInfo,
-    cart
+    cart,
+    viewed
 };
 
 const middleware = [thunk];

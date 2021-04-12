@@ -470,8 +470,6 @@ export const setPaymentIntent = (order: SamplePaymentIntentReducer, token: strin
     }
 }
 
-
-
 export const putPayment = (order: SamplePaymentReducer, token: string) => {
     return async (dispatch: Dispatch<Action>) => {
 
@@ -625,5 +623,14 @@ export const checkIfReviewed = (review: SampleReviewReducer, token: string) => {
                 payload: err.message
             })
         }
+    }
+}
+
+export const AddPageToViewed = (product: ProductParams) => {
+    return async (dispatch: Dispatch<Action>) => {
+        dispatch({
+            type: ActionType.ADD_PAGE_TO_VIEWED,
+            payload: product
+        })
     }
 }

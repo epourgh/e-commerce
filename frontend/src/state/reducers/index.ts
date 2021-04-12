@@ -3,6 +3,7 @@ import ProductListReducer from './productListReducer';
 import ProductDetailsReducer from './productDetailsReducer';
 import UserInfoReducer from './userInfoReducer';
 import CartReducer from './cartReducer';
+import ViewedPageReducer from './viewedPageReducer';
 import OrderReducer from './orderReducer';
 import OrderDetailsReducer from './orderDetailsReducer';
 import UserOrdersReducer from './userOrdersReducer';
@@ -17,6 +18,7 @@ const reducers = combineReducers({
     productDetails: ProductDetailsReducer,
     userInfo: UserInfoReducer,
     cart: CartReducer,
+    viewed: ViewedPageReducer,
     order: OrderReducer,
     orderDetails: OrderDetailsReducer,
     userOrders: UserOrdersReducer,
