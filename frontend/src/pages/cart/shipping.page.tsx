@@ -28,7 +28,7 @@ const ShippingPage = () => {
     }
 
     return (
-        <Container className={globalStyles.minHeight}>
+        <Container text className={globalStyles.minHeight}>
             <br />
             <CheckoutSteps step={3} />
 

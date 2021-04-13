@@ -32,17 +32,25 @@ def addOrderItems(request):
         return Response({'detail': 'No Order Items'}, status=status.HTTP_400_BAD_REQUEST)
     else:
 
-        # (1) Create order
+        # (1) Make payment
+
+        stripe.PaymentIntent.confirm(
+            data['paymentIntentId'],
+            payment_method=data['paymentMethodId'],
+        )
+
+        # (2) Create order
 
         order = Order.objects.create(
             user=user,
             paymentMethod=data['paymentMethod'],
             taxPrice=data['taxPrice'],
             shippingPrice=data['shippingPrice'],
-            totalPrice=data['totalPrice']
+            totalPrice=data['totalPrice'],
+            isPaid=True
         )
 
-        # (2) Create shipping address
+        # (3) Create shipping address
 
         shipping = ShippingAddress.objects.create(
             order=order,
@@ -52,7 +60,7 @@ def addOrderItems(request):
             country=data['shippingAddress']['country'],
         )
 
-        # (3) Create order items and set order to orderItem relationship
+        # (4) Create order items and set order to orderItem relationship
         for i in orderItems:
             product = Product.objects.get(_id=i['id'])
 
@@ -118,39 +126,36 @@ def getMyOrders(request):
 def setPaymentIntent(request, pk):
 
     amount = int(round(float(request.data['totalPrice']), 2)*100)
+
+    print(request.user)
+    print(request.data)
     
     user = request.user
     customerId=StripeUser.objects.get(user=user)
     serializerCUID = StripeSerializer(customerId, many=False)
 
-    try:
-        if serializerCUID['cuid'].value:
-            customer = stripe.Customer.retrieve(serializerCUID['cuid'].value)
-            print('user exists')
-        else:
-            customer = stripe.Customer.create(
-                name=request.data['name'],
-                email=request.data['email'],
-            )
-            customerId.cuid = customer.id
-            customerId.save()
-            print('user does not have a customer_id')
-
-
-        charge = stripe.PaymentIntent.create(
-            customer=customer,
-            amount=amount,
-            currency='USD',
-            description="payment for products",
-            payment_method=request.data['paymentMethodId'],
+    # Either retrieve User's Stripe CUID
+    if serializerCUID['cuid'].value:
+        customer = stripe.Customer.retrieve(serializerCUID['cuid'].value)
+    else:
+        customer = stripe.Customer.create(
+            name=request.data['name'],
+            email=request.data['email'],
         )
+        customerId.cuid = customer.id
+        customerId.save()
 
-        print('response from payment intent');
-        print(charge);
+    # Make payment intent with CUID
+    charge = stripe.PaymentIntent.create(
+        customer=customer,
+        amount=amount,
+        currency='USD',
+        description="payment for products",
+        payment_method=request.data['paymentMethodId'],
+    )
 
-        return Response(charge.id)
-    except:
-        return Response({'detail': 'Payment could not be made'}, status=status.HTTP_400_BAD_REQUEST)
+    return Response({ 'paymentIntentId': charge.id, 'paymentMethodId': request.data['paymentMethodId'] })
+
 
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])

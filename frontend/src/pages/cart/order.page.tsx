@@ -10,8 +10,8 @@ import { useActions } from '../../hooks/useActions';
 
 
 const OrderPage = () => {
-    const [token, cart, payment, address, subtotal] = useTypedSelector((state) => [state.userInfo.data.token, state.cart.product, state.cart.payment, state.cart.address, state.cart.total]);
-    const { Order, paymentIntent } = useActions();
+    const [token, cart, payment, address, subtotal, paymentIntent] = useTypedSelector((state) => [state.userInfo.data.token, state.cart.product, state.cart.payment, state.cart.address, state.cart.total, state.paymentIntent]);
+    const { Order } = useActions();
 
     const [costRaw, setCostRaw] = useState({ shipping: 0, tax: 0, total: 0})
     const [costStr, setCostStr] = useState({ items: '', shipping: '', tax: '', total: '' })
@@ -29,7 +29,9 @@ const OrderPage = () => {
             shippingPrice: costRaw.shipping,
             totalPrice: costRaw.total,
             shippingAddress: address,
-            orderItems: cart
+            orderItems: cart,
+            paymentIntentId: paymentIntent.paymentIntentId,
+            paymentMethodId: paymentIntent.paymentMethodId
         }, token)
 
     }

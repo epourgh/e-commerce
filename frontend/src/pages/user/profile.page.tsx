@@ -33,7 +33,7 @@ const ProfilePage = () => {
     }
     
     return (
-        <Container className={styles.minHeight}>
+        <Container text className={styles.minHeight}>
             <h1>Profile</h1>
             {(userInfo.data._id > 0) ? <h1>SUCCESS!</h1> : <h1></h1>}
 

@@ -43,6 +43,9 @@ const StripeForm: React.FC<StripeFormProps>  = ({orderSubmitted}) => {
         });
 
         const consoleRes = (error) ? error : paymentMethod;
+
+        console.log(consoleRes);
+        console.log(userInfo)
         
         setPaymentMethodId(paymentMethod.id)
 
@@ -69,8 +72,13 @@ const StripeForm: React.FC<StripeFormProps>  = ({orderSubmitted}) => {
     
     return (
         <form onSubmit={handleSubmit}>
-            {(!paymentMethodId && !paymentMessage.success) ? <><CardElement /><button type="submit" disabled={!stripe}>Pay</button><br /></>:<></>}
-            {(paymentMethodId && !paymentMessage.success) ? <button onClick={(e) => confirmPaymentIntent(e)}>Confirm</button>:<></>}
+            {(!paymentMethodId && !paymentMessage.success) ? <><CardElement /><button type="submit" disabled={!stripe}>Confirm</button><br /></>:<></>}
+
+            {/* paying from cart */}
+            {(paymentMethodId && !paymentMessage.success && orderSubmitted.page == 'payment') ? <p>Successfully confirmed payment method, continue to review total.</p>:<></>}
+
+            {/* paying from user/order */}
+            {(paymentMethodId && !paymentMessage.success && orderSubmitted.page !== 'payment') ? <button onClick={(e) => confirmPaymentIntent(e)}>Pay</button>:<></>}
             {(paymentMessage.success)?<p>Successfully paid for product</p>:<></>}
         </form>
     )

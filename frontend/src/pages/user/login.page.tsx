@@ -33,7 +33,7 @@ const LoginPage = () => {
     }
 
     return (
-        <Container className={globalStyles.minHeight}>
+        <Container text className={globalStyles.minHeight}>
             {(credentialsAlert) ? <Message negative>
                 <Message.Header>Credentials did not match</Message.Header>
                 <p>Wrong User or Password </p>

@@ -6,6 +6,7 @@ interface SampleReducer {
     error?: string | null;
     success?: boolean;
     paymentIntentId?: string;
+    paymentMethodId?: string;
 }
 
 const initialState = {
@@ -23,7 +24,7 @@ const PaymentIntentReducer = (
         case ActionType.POST_PAYMENT_INTENT:
             return { loading: true }
         case ActionType.POST_PAYMENT_INTENT_SUCCESS:
-            return { success: true, paymentIntentId: action.payload}
+            return { success: true, paymentIntentId: action.payload.paymentIntentId, paymentMethodId: action.payload.paymentMethodId }
         case ActionType.POST_PAYMENT_INTENT_ERROR:
             return { error: action.payload }
         default:

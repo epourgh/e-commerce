@@ -29,6 +29,7 @@ const OrderDetailsPage = ({ match }) => {
         shippingPrice: 0,
         taxPrice: 0,
         totalPrice: 0.00,
+        page: 'order'
     })
 
     const [refundDetails, setRefundDetails] = useState<any>('')

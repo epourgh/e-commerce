@@ -29,7 +29,7 @@ const RegisterPage = () => {
     }
 
     return (
-        <Container className={globalStyles.minHeight}>
+        <Container text className={globalStyles.minHeight}>
             <h1>Registration</h1>
             {(userInfo.data._id > 0) ? <h1>SUCCESS!</h1> : <></>}
             {(message !== '') ? <Message.Header>{message}</Message.Header> : <></>}
