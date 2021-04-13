@@ -16,12 +16,14 @@ import OrderDetailsPage from './pages/user/order.page';
 import RefundPage from './pages/user/refund.page';
 import FavoritesPage from './pages/user/favorites.page';
 import Header from './components/header.component';
+import Spacing from './components/spacing.component';
 import Footer from './components/footer.component';
 
 const App: React.FC = () => {
     return (
         <Router>
             <Header />
+            <Spacing />
             <Route path='/' component={HomePage} exact />
             <Route path='/category/:id' component={CategoryPage} exact />
             <Route path='/product/:id' component={ProductPage} exact />

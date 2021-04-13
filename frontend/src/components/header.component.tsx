@@ -26,18 +26,18 @@ const IsLoggedIn = () => {
     if (userInfo._id) {
         return (
             <>
-                <Menu.Item>
+                <li>
                     <FontAwesomeIcon icon={faShippingFast} className={styles.faIcons} />&nbsp;&nbsp;<Link to="/user/orders/" replace> Orders</Link>
-                </Menu.Item>
-                <Menu.Item>
+                </li>
+                <li>
                     <Icon name='star' />&nbsp;&nbsp;<Link to="/user/favorites/" replace> Favorites</Link>
-                </Menu.Item>
-                <Menu.Item>
+                </li>
+                <li>
                     <FontAwesomeIcon icon={faUser} className={styles.faIcons} />&nbsp;&nbsp;<Link to="/user/profile" replace> {userInfo.username}</Link>
-                </Menu.Item>
-                <Menu.Item>
+                </li>
+                <li>
                     <FontAwesomeIcon icon={faSignOutAlt} className={styles.faIcons} />&nbsp;&nbsp;<span className={styles.signout} onClick={() => logoutHandler()}> Sign Out</span>
-                </Menu.Item>
+                </li>
                 
             </>
         );
@@ -50,18 +50,16 @@ const IsLoggedIn = () => {
 
 const Header = () => {
     return (
-        <header className={styles.header} >
-            <Segment inverted>
-                <Menu inverted secondary>
-                    <Menu.Item>
-                        <Link to="/" replace>eCommerce</Link>
-                    </Menu.Item>
-                    <Menu.Item>
-                        <FontAwesomeIcon icon={faShoppingBag} className={styles.faIcons} />&nbsp;&nbsp;<Link to="/cart" replace>Cart</Link>
-                    </Menu.Item>
-                    <IsLoggedIn />
-                </Menu>
-            </Segment>
+        <header className={styles.header}>
+            <ul className={styles.navbar}>
+                <li>
+                    <Link to="/" replace>eCommerce</Link>
+                </li>
+                <li>
+                    <FontAwesomeIcon icon={faShoppingBag} className={styles.faIcons} />&nbsp;&nbsp;<Link to="/cart" replace>Cart</Link>
+                </li>
+                <IsLoggedIn />
+            </ul>
         </header>
     )
 }

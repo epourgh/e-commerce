@@ -1,6 +1,33 @@
 .header {
-    position: sticky;
-    background: #000;
+    position: fixed;
+    z-index: 2;
+    border-bottom: 1px solid rgb(233, 233, 233);
+    background: #fff;
+    padding: 1em 0;
+    width: 100vw;
+}
+
+.navbar {
+}
+
+.navbar, .navbar li {
+    list-style:none;
+    display: inline-block;
+	margin-right:30px;
+}
+
+.navbar li a, .navbar li span {
+    font-weight:700;
+    color:#333;
+    font-size:14px;
+    text-decoration:none;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.navbar li:hover, .navbar li a:hover, .navbar li span:hover {
+    transition-duration: 1s;
+    color: rgb(136, 136, 136);
 }
 
 .faIcons {
@@ -10,4 +37,8 @@
 
 .signout {
     cursor: pointer;
+}
+
+.menuItem Link {
+    color: #000 !important
 }
