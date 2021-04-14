@@ -43,7 +43,7 @@ const IsLoggedIn = () => {
         );
     }
 
-    return <Menu.Item><FontAwesomeIcon icon={faUser} className={styles.faIcons} />&nbsp;&nbsp;<Link to="/user/login" replace> Sign In</Link></Menu.Item>;
+    return <li><FontAwesomeIcon icon={faUser} className={styles.faIcons} />&nbsp;&nbsp;<Link to="/user/login" replace> Sign In</Link></li>;
     
 }
 

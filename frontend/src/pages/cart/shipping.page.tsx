@@ -28,36 +28,37 @@ const ShippingPage = () => {
     }
 
     return (
-        <Container text className={globalStyles.minHeight}>
+        <Container className={globalStyles.minHeight}>
             <br />
             <CheckoutSteps step={3} />
+            <Container text>
+                <h1>Shipping</h1>
+                <Form>
+                    <Form.Field>
+                        <label>Address</label>
+                        <input placeholder='Address' type="text" value={address} onChange={(e) => setAddress(e.target.value)} required />
+                    </Form.Field>
 
-            <h1>Shipping</h1>
-            <Form>
-                <Form.Field>
-                    <label>Address</label>
-                    <input placeholder='Address' type="text" value={address} onChange={(e) => setAddress(e.target.value)} required />
-                </Form.Field>
+                    <Form.Field>
+                        <label>City</label>
+                        <input placeholder='City' type="text" value={city} onChange={(e) => setCity(e.target.value)} required />
+                    </Form.Field>
 
-                <Form.Field>
-                    <label>City</label>
-                    <input placeholder='City' type="text" value={city} onChange={(e) => setCity(e.target.value)} required />
-                </Form.Field>
+                    <Form.Field>
+                        <label>Country</label>
+                        <input placeholder='Country' type="text" value={country} onChange={(e) => setCountry(e.target.value)} required />
+                    </Form.Field>
 
-                <Form.Field>
-                    <label>Country</label>
-                    <input placeholder='Country' type="text" value={country} onChange={(e) => setCountry(e.target.value)} required />
-                </Form.Field>
-
-                <Form.Field>
-                    <label>Postal Code</label>
-                    <input placeholder='Postal Code' type="text" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} required />
-                </Form.Field>
-                
-                <Link to={(address == '' || city == '' || country == '' || postalCode == '') ? '#' : '/cart/payment/'}>
-                   <Button disabled={address == '' || city == '' || country == '' || postalCode == ''} onClick={(e) => addressHandler(e)}>Verify Address</Button>
-                </Link>
-            </Form>
+                    <Form.Field>
+                        <label>Postal Code</label>
+                        <input placeholder='Postal Code' type="text" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} required />
+                    </Form.Field>
+                    
+                    <Link to={(address == '' || city == '' || country == '' || postalCode == '') ? '#' : '/cart/payment/'}>
+                    <Button disabled={address == '' || city == '' || country == '' || postalCode == ''} onClick={(e) => addressHandler(e)}>Verify Address</Button>
+                    </Link>
+                </Form>
+            </Container>
         </Container>
     )
 }

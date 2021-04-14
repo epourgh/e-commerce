@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PaymentRequestButtonElement, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useActions } from '../../hooks/useActions';
+import styles from '../../styles/Payment.module.scss'
 
 interface OrderSubmitted {
     _id: number;
@@ -72,7 +73,20 @@ const StripeForm: React.FC<StripeFormProps>  = ({orderSubmitted}) => {
     
     return (
         <form onSubmit={handleSubmit}>
-            {(!paymentMethodId && !paymentMessage.success) ? <><CardElement /><button type="submit" disabled={!stripe}>Confirm</button><br /></>:<></>}
+            {(!paymentMethodId && !paymentMessage.success) ? <><CardElement className={styles.StripeElement} options={{
+                style: {
+                    base: {
+                        fontSize: '16px',
+                        color: '#424770',
+                        '::placeholder': {
+                            color: '#aab7c4',
+                        },
+                    },
+                    invalid: {
+                        color: '#9e2146',
+                    },
+                },
+            }} /><br /><button type="submit" disabled={!stripe}>Confirm</button><br /></>:<></>}
 
             {/* paying from cart */}
             {(paymentMethodId && !paymentMessage.success && orderSubmitted.page == 'payment') ? <p>Successfully confirmed payment method, continue to review total.</p>:<></>}

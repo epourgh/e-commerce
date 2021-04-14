@@ -74,23 +74,25 @@ const PaymentPage = () => {
         <Container className={globalStyles.minHeight}>
             <br />
             <CheckoutSteps step={4} />
-            <h1>Payment Method</h1>
+            <Container text>
+                <h1>Payment Method</h1>
 
-            <Elements stripe={stripePromise}>
-                <StripeForm orderSubmitted={orderSubmitted} />
-            </Elements>
-            
-            <br/>
-            <br/>
-            {
-                (continueButton)
-                ?
-                <Link to='/cart/order/'>
-                    <Button onClick={() => paymentHandler()}>Continue</Button>
-                </Link>
-                :
-                <></>
-            }
+                <Elements stripe={stripePromise}>
+                    <StripeForm orderSubmitted={orderSubmitted} />
+                </Elements>
+                
+                <br/>
+                <br/>
+                {
+                    (continueButton)
+                    ?
+                    <Link to='/cart/order/'>
+                        <Button onClick={() => paymentHandler()}>Continue</Button>
+                    </Link>
+                    :
+                    <></>
+                }
+            </Container>
         </Container>
     )
 }

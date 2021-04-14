@@ -50,7 +50,7 @@ const HomePage: React.FC = () => {
                 <img src="/images/beauty-carousal.png" />
                 <img src="/images/toys-carousal.png" />
             </Flickity>
-            <Container className={globalStyles.minHeight}>
+            <Container className={globalStyles.HomeBodyContainer}>
                 <br/>
                 <Segment>
                     <Header as='h2'>
