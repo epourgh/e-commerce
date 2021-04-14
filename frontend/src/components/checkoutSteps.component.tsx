@@ -10,13 +10,13 @@ interface StepsProps {
 
 const CheckoutSteps: React.FC<StepsProps> = ({ step }) => {
 
-    const [address, payment] = useTypedSelector((state) => [state.cart.address.address, state.cart.payment]);
+    const [userId, address, payment] = useTypedSelector((state) => [state.userInfo.data._id, state.cart.address.address, state.cart.payment]);
 
     return (
         <Container>
             <Breadcrumb className={styles.breadcrumbLink} >
                 <Breadcrumb.Section active={step === 1}>
-                    {(step === 1) ? <>Login</> : <Link to="/user/login">Login</Link>}
+                    {(step === 1 || userId !== 0) ? <>Login</> : <Link to="/user/login">Login</Link>}
                 </Breadcrumb.Section>
                 <Breadcrumb.Divider icon='right angle' />
                 <Breadcrumb.Section active={step === 2}>

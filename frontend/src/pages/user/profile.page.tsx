@@ -35,7 +35,7 @@ const ProfilePage = () => {
     return (
         <Container text className={styles.minHeight}>
             <h1>Profile</h1>
-            {(userInfo.data._id > 0) ? <h1>SUCCESS!</h1> : <h1></h1>}
+            {(userInfo.succes > true) ? <h1>SUCCESS!</h1> : <h1></h1>}
 
             <Loading status={{ loading: userInfo.loading, error: userInfo.error }} />
 

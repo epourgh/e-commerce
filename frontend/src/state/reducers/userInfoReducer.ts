@@ -5,6 +5,7 @@ import { UserInfo } from '../data-types/index';
 interface SampleReducer {
     loading: boolean;
     error: string | null;
+    success?: boolean | null;
     data: UserInfo;
 }
 
@@ -36,7 +37,7 @@ const UserInfoReducer = (
         case ActionType.PUT_PROFILE:
             return { loading: true, error: null, data: emptyUserPayload }
         case ActionType.PUT_PROFILE_SUCCESS:
-            return { loading: false, error: null, data: action.payload }
+            return { loading: false, error: null, success: true, data: action.payload }
         case ActionType.PUT_PROFILE_ERROR:
             return { loading: false, error: action.payload, data: emptyUserPayload }
         case ActionType.USER_LOGOUT:
