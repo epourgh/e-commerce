@@ -532,20 +532,19 @@ export const fetchOrderDetails = (id: number, params: UserProfileEditParams) => 
     }
 }
 
-export const fetchUserOrders = (params: UserProfileEditParams) => {
+export const fetchUserOrders = (params: { loadOrdersCount: number }, user: UserProfileEditParams) => {
     return async (dispatch: Dispatch<Action>) => {
         dispatch({
             type: ActionType.GET_USER_ORDERS
         })
 
         try {
-
-            const request = `${backendURL}/api/orders/myorders`
+            const request = `${backendURL}/api/orders/myorders/${params.loadOrdersCount}`
             const { data } = await axios({
                 method: 'GET',
                 url: request,
                 headers: {
-                    'authorization': `Bearer ${params.token}`
+                    'authorization': `Bearer ${user.token}`
                 }
             });
 

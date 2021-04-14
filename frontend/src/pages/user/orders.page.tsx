@@ -1,5 +1,5 @@
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { Container, Table, Header, Image } from 'semantic-ui-react'
+import { Container, Table, Grid, Header, Image, Button, Message } from 'semantic-ui-react'
 import globalStyles from '../../styles/Global.module.scss'
 import styles from '../../styles/Product.module.scss'
 import React from 'react'
@@ -32,30 +32,38 @@ const OrdersPage = () => {
 
     const [userInfo, userOrders] = useTypedSelector((state) => [state.userInfo.data, state.userOrders]);
     const { fetchUserOrders } = useActions();
+    const [ loadOrdersCount, setLoadOrdersCount ] = useState(3)
+    const [ totalOrdersCount, setTotalOrdersCount ] = useState(0)
 
     useEffect(() => {
-        console.log('ORDER RESPONSE')
-        console.log(userInfo.token)
-
-        fetchUserOrders(userInfo); /* eslint-disable react-hooks/exhaustive-deps */
-
+        fetchUserOrders({ loadOrdersCount }, userInfo); /* eslint-disable react-hooks/exhaustive-deps */
     }, [])
 
     useEffect(() => {
         if (typeof userOrders.data === 'undefined') {
             return;
         }
-        console.log(userOrders.data)
+        console.log(userOrders.data[0]._id)
         if (!isEmpty(userOrders.data)) {
             setUserOrdersState(userOrders.data)
         }
+        setTotalOrdersCount(userOrders.data[0]._id)
     }, [userOrders])
+
+    const ViewMoreOrders = (e) => {
+        e.preventDefault();
+        
+        setLoadOrdersCount(loadOrdersCount+3)
+
+        fetchUserOrders({ loadOrdersCount: loadOrdersCount + 3 }, userInfo); /* eslint-disable react-hooks/exhaustive-deps */
+    }
+    
 
     return (
         <Container className={globalStyles.minHeight}>
             <br />
             {
-                userOrdersState.slice(0).reverse().map((orderContent) => {
+                userOrdersState.map((orderContent) => {
                     return (
                         <Table singleLine key={orderContent._id}>
                             <Table.Header>
@@ -118,6 +126,21 @@ const OrdersPage = () => {
                     );
                 })
             }
+            <Grid>
+                <Grid.Column textAlign="center">
+
+                    {
+                        (totalOrdersCount > 3 && totalOrdersCount > loadOrdersCount)
+                            ? <Button onClick={(e) => ViewMoreOrders(e)}>View More Orders</Button>
+                            : <Message
+                                icon='list alternate'
+                                header='End of Page'
+                                content='These are all the orders we have stored in our database. If you need assistance looking for an order, let us know.' info
+                            />
+                    }
+                    
+                </Grid.Column>
+            </Grid>
             <br />
         </Container>
     )

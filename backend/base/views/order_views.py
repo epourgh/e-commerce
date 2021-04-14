@@ -115,9 +115,12 @@ def getOrderById(request, pk):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def getMyOrders(request):
+def getMyOrders(request, pk):
+
     user = request.user
-    orders = user.order_set.all()
+    upper = int(pk)
+
+    orders = user.order_set.all().order_by('_id').reverse()[0:upper]
     serializer = OrderSerializer(orders, many=True)
     return Response(serializer.data)
 
@@ -126,9 +129,6 @@ def getMyOrders(request):
 def setPaymentIntent(request, pk):
 
     amount = int(round(float(request.data['totalPrice']), 2)*100)
-
-    print(request.user)
-    print(request.data)
     
     user = request.user
     customerId=StripeUser.objects.get(user=user)
