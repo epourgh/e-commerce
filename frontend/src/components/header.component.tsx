@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
-import { Menu, Segment, Icon } from 'semantic-ui-react'
+import React from 'react';
+import { Icon, Label, Menu } from 'semantic-ui-react'
 import { faShoppingBag, faUser, faShippingFast, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from "react-router-dom";
 import styles from '../styles/Header.module.scss'
@@ -13,10 +14,6 @@ const IsLoggedIn = () => {
 
     const userInfo = useTypedSelector((state) => state.userInfo.data);
     const { UserLogout } = useActions();
-
-    useEffect(() => {
-        console.log(userInfo)
-    }, [])
 
     const logoutHandler = () => {
         console.log('logout')
@@ -49,6 +46,9 @@ const IsLoggedIn = () => {
 
 
 const Header = () => {
+
+    const cartCount = useTypedSelector((state) => state.cart.total.count);
+
     return (
         <header className={styles.header}>
             <ul className={styles.navbar}>
@@ -56,7 +56,26 @@ const Header = () => {
                     <Link to="/" replace>eCommerce</Link>
                 </li>
                 <li>
-                    <FontAwesomeIcon icon={faShoppingBag} className={styles.faIcons} />&nbsp;&nbsp;<Link to="/cart" replace>Cart</Link>
+                    <Link to="/cart" replace>
+                        {
+                            (cartCount)
+                            ?
+                            <Menu compact  className={styles.cartMenuItemStyle}>
+                                <Menu.Item as='a'>
+                                    <FontAwesomeIcon icon={faShoppingBag} className={styles.faIcons} />&nbsp;&nbsp;
+                                    Cart&nbsp;
+                                    <Label color='orange' floating className={styles.floatingCartTotalCount}>
+                                        { cartCount }
+                                    </Label>
+                                </Menu.Item>
+                            </Menu>
+                            :
+                            <>
+                                <FontAwesomeIcon icon={faShoppingBag} className={styles.faIcons} /> &nbsp;&nbsp;
+                                Cart
+                            </>
+                        }
+                    </Link>
                 </li>
                 <IsLoggedIn />
             </ul>
