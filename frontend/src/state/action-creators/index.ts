@@ -48,15 +48,21 @@ export const fetchProductList = (params: Params = {}) => {
 }
 
 
-export const fetchProductListByCategory = (params: Params = {}) => {
+export const fetchProductListByCategory = (params: { id: number, loadProductsCount: number }) => {
     return async (dispatch: Dispatch<Action>) => {
         dispatch({
             type: ActionType.GET_PRODUCT_LIST_BY_ID
         })
 
+        console.log(params)
+
         try {
             const request = `${backendURL}/api/products/category/${params.id}`
-            const { data } = (isEmpty(params)) ? await axios.get(request) : await axios.get(request, { params });
+            const { data } = await axios({
+                method: 'GET',
+                url: request,
+                params: { loadProductsCount: params.loadProductsCount }
+            });
 
             dispatch({
                 type: ActionType.GET_PRODUCT_LIST_BY_ID_SUCCESS,

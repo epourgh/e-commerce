@@ -18,12 +18,21 @@ def getProducts(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def getProductsByCategory(request, pk):    
+def getProductsByCategory(request, pk):      
+    upper = int(request.GET.get('loadProductsCount', None))
+
     category = Category.objects.get(_id=pk)
-    products = Product.objects.filter(category=category)
+    allproductsByCategory = Product.objects.filter(category=category)
+    products = allproductsByCategory[0:upper]
 
     serializer = ProductSerializer(products, many=True)
-    return Response(serializer.data)
+
+    print(len(serializer.data))
+    print(len(allproductsByCategory))
+
+    size = True if (len(serializer.data) == len(allproductsByCategory)) else False
+
+    return Response({'data': serializer.data, 'isEndOfFeed': size })
 
 @api_view(['GET'])
 def getProduct(request, pk):

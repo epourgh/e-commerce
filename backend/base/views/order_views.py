@@ -124,9 +124,6 @@ def getMyOrders(request, pk):
     orders = allOrders.order_by('_id').reverse()[0:upper]
     serializer = OrderSerializer(orders, many=True)
 
-    print(len(serializer.data))
-    print(len(allOrders))
-
     size = True if (len(serializer.data) == len(allOrders)) else False
     return Response({'data': serializer.data, 'isEndOfFeed': size })
 

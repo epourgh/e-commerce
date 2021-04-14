@@ -1,8 +1,8 @@
 import { useTypedSelector } from '../hooks/useTypedSelector';
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useActions } from '../hooks/useActions';
 import Loading from '../components/loading.component';
-import { Container, Header, Segment } from 'semantic-ui-react'
+import { Container, Button, Message, Grid } from 'semantic-ui-react'
 import ProductList from '../components/home/productList.component';
 import globalStyles from '../styles/Global.module.scss'
 
@@ -12,10 +12,17 @@ const CategoryPage = ({ match }) => {
 
     const [productList, userInfo] = useTypedSelector((state) => [state.productList, state.userInfo]);
     const { fetchProductListByCategory } = useActions();
+    const [loadProductsCount, setLoadProductsCount] = useState(3)
 
     useEffect(() => {
-        fetchProductListByCategory({ id: match.params.id }); /* eslint-disable react-hooks/exhaustive-deps */
+        fetchProductListByCategory({ id: match.params.id, loadProductsCount }); /* eslint-disable react-hooks/exhaustive-deps */
     }, [])
+
+    const ViewMoreOrders = (e) => {
+        e.preventDefault();
+        setLoadProductsCount(loadProductsCount + 3)
+        fetchProductListByCategory({ id: match.params.id, loadProductsCount: loadProductsCount + 3 }); /* eslint-disable react-hooks/exhaustive-deps */
+    }
 
     return (
         <Container className={globalStyles.minHeight}>
@@ -23,8 +30,30 @@ const CategoryPage = ({ match }) => {
             <h1>Latest Products</h1>
             <Loading status={{ loading: productList.loading, error: productList.error }} />
             <ProductList props={{ data: productList.data, loading: productList.loading, error: productList.error }} />
+            {
+                (productList.data.length < 3)
+                ?
+                <></>
+                :
+                (
+                    (!productList.isEndOfFeed) 
+                    ?
+                    <Button onClick={(e) => ViewMoreOrders(e)}>View More Orders</Button>        
+                    :  
+                    <Grid>
+                        <Grid.Column textAlign="center">
+                            <Message
+                                icon='list alternate'
+                                header='No More to Show'
+                                content='These are all the orders we have stored in our database. If you need assistance looking for an order, let us know.' info
+                            />
+                        </Grid.Column>
+                    </Grid>
+                )
+            }
         </Container>
-    )
+
+)
 }
 
 export default CategoryPage
