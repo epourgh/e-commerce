@@ -120,9 +120,15 @@ def getMyOrders(request, pk):
     user = request.user
     upper = int(pk)
 
-    orders = user.order_set.all().order_by('_id').reverse()[0:upper]
+    allOrders = user.order_set.all()
+    orders = allOrders.order_by('_id').reverse()[0:upper]
     serializer = OrderSerializer(orders, many=True)
-    return Response(serializer.data)
+
+    print(len(serializer.data))
+    print(len(allOrders))
+
+    size = True if (len(serializer.data) == len(allOrders)) else False
+    return Response({'data': serializer.data, 'isEndOfFeed': size })
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])

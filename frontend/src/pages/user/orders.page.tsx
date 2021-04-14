@@ -33,7 +33,7 @@ const OrdersPage = () => {
     const [userInfo, userOrders] = useTypedSelector((state) => [state.userInfo.data, state.userOrders]);
     const { fetchUserOrders } = useActions();
     const [ loadOrdersCount, setLoadOrdersCount ] = useState(3)
-    const [ totalOrdersCount, setTotalOrdersCount ] = useState(0)
+    const [ isEndOfFeed, setIsEndOfFeed ] = useState(0)
 
     useEffect(() => {
         fetchUserOrders({ loadOrdersCount }, userInfo); /* eslint-disable react-hooks/exhaustive-deps */
@@ -43,11 +43,11 @@ const OrdersPage = () => {
         if (typeof userOrders.data === 'undefined') {
             return;
         }
-        console.log(userOrders.data[0]._id)
+
         if (!isEmpty(userOrders.data)) {
             setUserOrdersState(userOrders.data)
         }
-        setTotalOrdersCount(userOrders.data[0]._id)
+        setIsEndOfFeed(userOrders.isEndOfFeed)
     }, [userOrders])
 
     const ViewMoreOrders = (e) => {
@@ -63,80 +63,94 @@ const OrdersPage = () => {
         <Container className={globalStyles.minHeight}>
             <br />
             {
-                userOrdersState.map((orderContent) => {
-                    return (
-                        <Table singleLine key={orderContent._id}>
-                            <Table.Header>
-                                <Table.Row>
-                                    <Table.HeaderCell>
-                                        <p><b>Order Placed:</b> {moment(orderContent.createdAt).format('llll')}</p>
-                                    </Table.HeaderCell>
-                                    <Table.HeaderCell><p><b>Delivery Status:</b> {(!orderContent.isPaid)?'Need to pay before item is delivered':(orderContent.isDelivered) ? 'Delivered' : 'In Transit'}</p></Table.HeaderCell>
-                                    <Table.HeaderCell><p><Link to={`/user/order/${orderContent._id}`}>Order Details</Link></p></Table.HeaderCell>
-                                </Table.Row>
-                            </Table.Header>
-                            <Table.Header>
-                                    {
-                                        (orderContent.isPaid) ? 
-                                            <Table.Row>
-                                                <Table.Cell positive>
-                                                    <FontAwesomeIcon icon={faCheckCircle} />&nbsp;&nbsp;
+                (userOrdersState[0]._id !== 0)
+                ?
+                <>
+                    {
+                        userOrdersState.map((orderContent) => {
+                            return (
+                                <Table singleLine key={orderContent._id}>
+                                    <Table.Header>
+                                        <Table.Row>
+                                            <Table.HeaderCell>
+                                                <p><b>Order Placed:</b> {moment(orderContent.createdAt).format('llll')}</p>
+                                            </Table.HeaderCell>
+                                            <Table.HeaderCell><p><b>Delivery Status:</b> {(!orderContent.isPaid) ? 'Need to pay before item is delivered' : (orderContent.isDelivered) ? 'Delivered' : 'In Transit'}</p></Table.HeaderCell>
+                                            <Table.HeaderCell><p><Link to={`/user/order/${orderContent._id}`}>Order Details</Link></p></Table.HeaderCell>
+                                        </Table.Row>
+                                    </Table.Header>
+                                    <Table.Header>
+                                        {
+                                            (orderContent.isPaid) ?
+                                                <Table.Row>
+                                                    <Table.Cell positive>
+                                                        <FontAwesomeIcon icon={faCheckCircle} />&nbsp;&nbsp;
                                                     This order has been marked as paid.
                                                 </Table.Cell>
-                                                <Table.Cell positive></Table.Cell>
-                                                <Table.Cell positive></Table.Cell>
-                                            </Table.Row>
-                                        : 
-                                            <Table.Row>
-                                                <Table.Cell negative>
-                                                <FontAwesomeIcon icon={faExclamationCircle} />&nbsp;&nbsp; Unpaid:&nbsp;  
+                                                    <Table.Cell positive></Table.Cell>
+                                                    <Table.Cell positive></Table.Cell>
+                                                </Table.Row>
+                                                :
+                                                <Table.Row>
+                                                    <Table.Cell negative>
+                                                        <FontAwesomeIcon icon={faExclamationCircle} />&nbsp;&nbsp; Unpaid:&nbsp;
                                                     <Link to={`/user/order/${orderContent._id}`}>click here</Link> to pay for the item.
                                                 </Table.Cell>
-                                                <Table.Cell negative></Table.Cell>
-                                                <Table.Cell negative></Table.Cell>
-                                            </Table.Row>
-                                    }                                
-                            </Table.Header>
-                            <Table.Body>
-                                <Table.Row>
-                                    <Table.Cell>
-                                        <ul>
-                                            {
-                                                orderContent.orderItems.map((item) => {
-                                                    return (
-                                                        <Table.Row key={item._id} className={styles.cartItemSpacing}>
-                                                            <Table.Cell>
-                                                                <Header as='h4' image>
-                                                                    <Image src={item.image} rounded size='mini' />
-                                                                    <Header.Content>
-                                                                        <b><Link to={`/product/${item.product}`}>{item.name}</Link></b>
-                                                                        <Header.Subheader>{item.price} {(item.qty > 1) ? <>(x{item.qty})</>:<></>}</Header.Subheader>
-                                                                    </Header.Content>
-                                                                </Header>
-                                                            </Table.Cell>
-                                                        </Table.Row>
-                                                    )
-                                                })
-                                            }
-                                        </ul>
-                                    </Table.Cell>
-                                </Table.Row>
-                            </Table.Body>
-                        </Table>
-                    );
-                })
+                                                    <Table.Cell negative></Table.Cell>
+                                                    <Table.Cell negative></Table.Cell>
+                                                </Table.Row>
+                                        }
+                                    </Table.Header>
+                                    <Table.Body>
+                                        <Table.Row>
+                                            <Table.Cell>
+                                                <ul>
+                                                    {
+                                                        orderContent.orderItems.map((item) => {
+                                                            return (
+                                                                <Table.Row key={item._id} className={styles.cartItemSpacing}>
+                                                                    <Table.Cell>
+                                                                        <Header as='h4' image>
+                                                                            <Image src={item.image} rounded size='mini' />
+                                                                            <Header.Content>
+                                                                                <b><Link to={`/product/${item.product}`}>{item.name}</Link></b>
+                                                                                <Header.Subheader>{item.price} {(item.qty > 1) ? <>(x{item.qty})</> : <></>}</Header.Subheader>
+                                                                            </Header.Content>
+                                                                        </Header>
+                                                                    </Table.Cell>
+                                                                </Table.Row>
+                                                            )
+                                                        })
+                                                    }
+                                                </ul>
+                                            </Table.Cell>
+                                        </Table.Row>
+                                    </Table.Body>
+                                </Table>
+                            );
+                        })
+                    }
+                </>
+                :
+                <Message
+                    header='No Orders to Show'
+                    content='Your account does not have any orders to show.' info
+                />
             }
+  
             <Grid>
                 <Grid.Column textAlign="center">
 
                     {
-                        (totalOrdersCount > 3 && totalOrdersCount > loadOrdersCount)
+                        (userOrdersState.length < 3)
+                        ? <></>
+                        : ((!isEndOfFeed)
                             ? <Button onClick={(e) => ViewMoreOrders(e)}>View More Orders</Button>
                             : <Message
                                 icon='list alternate'
-                                header='End of Page'
+                                header='No More to Show'
                                 content='These are all the orders we have stored in our database. If you need assistance looking for an order, let us know.' info
-                            />
+                            />)
                     }
                     
                 </Grid.Column>

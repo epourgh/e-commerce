@@ -6,6 +6,7 @@ interface SampleReducer {
     loading?: boolean;
     error?: string | null;
     data?: SampleOrderReducer;
+    isEndOfFeed?: boolean;
 }
 
 const initialState = [{
@@ -35,7 +36,7 @@ const UserOrdersReducer = (
         case ActionType.GET_USER_ORDERS:
             return { loading: true }
         case ActionType.GET_USER_ORDERS_SUCCESS:
-            return { data: action.payload }
+            return { data: action.payload.data, isEndOfFeed: action.payload.isEndOfFeed }
         case ActionType.GET_USER_ORDERS_ERROR:
             return { error: action.payload }
         default:
