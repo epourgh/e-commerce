@@ -60,6 +60,9 @@
         ],
         "react-stripe-elements": [
             "./node_modules/react-stripe-elements/dist/react-stripe-elements"
+        ],
+        "react-svg": [
+            "./node_modules/react-svg/dist/index.d.ts"
         ]
     },
     "plugins": [{ "name": "typescript-plugin-css-modules/index" }]

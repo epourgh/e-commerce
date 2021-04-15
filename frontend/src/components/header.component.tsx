@@ -8,7 +8,7 @@ import styles from '../styles/Header.module.scss'
 import { useActions } from '../hooks/useActions';
 
 import { useTypedSelector } from '../hooks/useTypedSelector';
-
+import { ReactSVG } from 'react-svg'
 
 const IsLoggedIn = () => {
 
@@ -53,7 +53,9 @@ const Header = () => {
         <header className={styles.header}>
             <ul className={styles.navbar}>
                 <li>
-                    <Link to="/" replace>eCommerce</Link>
+                    <Link to="/" replace>
+                        <img src='./images/circle.png' className={styles.logo} />
+                    </Link>
                 </li>
                 <li>
                     <Link to="/cart" replace>
