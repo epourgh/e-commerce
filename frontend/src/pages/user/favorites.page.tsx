@@ -6,13 +6,15 @@ import { useActions } from '../../hooks/useActions';
 import { Link } from "react-router-dom";
 
 const FavoritesPage = () => {
-
+    // loadProductsCount
     const [userFavoritesPage, setUserFavoritesPage] = useState([]);
+    const [endOfFavsFeed, setEndOfFavsFeed] = useState([]);
     const { getFavorites, unsetFavorite } = useActions();
     const [userInfo, userFavorite] = useTypedSelector((state) => [state.userInfo, state.userFavorite]);
+    const [loadFavoritesCount, setLoadFavoritesCount] = useState(3)
 
     useEffect(() => {
-        getFavorites(userInfo.data.token)
+        getFavorites({ loadFavoritesCount }, userInfo.data.token)
     }, [])
 
     useEffect(() => {
@@ -20,6 +22,7 @@ const FavoritesPage = () => {
             return;
         }
         setUserFavoritesPage(userFavorite.all)
+        setEndOfFavsFeed(userFavorite.isEndOfFeed)
     }, [userFavorite])
 
     const handleUnfavoriteubmission = async (event, productId) => {
@@ -27,11 +30,18 @@ const FavoritesPage = () => {
         await getFavorites(userInfo.data.token)
     }
 
+    const ViewMoreFavorites = (e) => {
+        e.preventDefault();
+        setLoadFavoritesCount(loadFavoritesCount + 3)
+        getFavorites({ loadFavoritesCount: loadFavoritesCount + 3 }, userInfo.data.token)
+    }
+
     return (
         <Container text className={globalStyles.minHeight}>
             {
                 (userFavoritesPage.length)
                     ?
+                    <>
                     <Grid>
                         <Grid.Row>
                             <Grid.Column width={14}>
@@ -65,8 +75,24 @@ const FavoritesPage = () => {
                                 </Grid.Row>
                             )
                         })}
-
                     </Grid>
+                    <Grid>
+                        <Grid.Column textAlign="center">
+                            {
+                                (!endOfFavsFeed)
+                                ?
+                                <Button onClick={(e) => ViewMoreFavorites(e)}>View More Favorites</Button>  
+                                :
+                                <Message
+                                    icon='heart outline'
+                                    header='End of Favorites Feed'
+                                    content='You have reached the end of your favorite feed.' 
+                                    color='pink'
+                                />
+                            }
+                        </Grid.Column>
+                    </Grid>
+                    </>
                     :
                     <Message
                         header='Empty' 

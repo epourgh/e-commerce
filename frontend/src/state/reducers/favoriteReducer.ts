@@ -37,7 +37,7 @@ const FavoriteReducer = (
         case ActionType.GET_FAVORITES:
             return { loading: true }
         case ActionType.GET_FAVORITES_SUCCESS:
-            return { success: true, all: action.payload }
+            return { success: true, all: action.payload.data, isEndOfFeed: action.payload.isEndOfFeed }
         case ActionType.GET_FAVORITES_ERROR:
             return { error: action.payload }
         case ActionType.GET_FAVORITE_BY_ID:

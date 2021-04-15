@@ -45,7 +45,7 @@ const CategoryPage = ({ match }) => {
                             <Message
                                 icon='list alternate'
                                 header='No More to Show'
-                                content='These are all the orders we have stored in our database. If you need assistance looking for an order, let us know.' info
+                                content='These are all the products we have displayed in this category. If you need assistance looking for an order, let us know.' info
                             />
                         </Grid.Column>
                     </Grid>

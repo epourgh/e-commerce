@@ -415,7 +415,7 @@ export const getFavoriteById = (favorite: SampleFavoriteReducer, token: string) 
 }
 
 
-export const getFavorites = (token: string) => {
+export const getFavorites = (params: { loadFavoritesCount: number }, token: string) => {
     return async (dispatch: Dispatch<Action>) => {
 
         dispatch({ type: ActionType.GET_FAVORITES })
@@ -425,6 +425,7 @@ export const getFavorites = (token: string) => {
             const { data } = await axios({
                 method: 'GET',
                 url: request,
+                params,
                 headers: {
                     'authorization': `Bearer ${token}`
                 }

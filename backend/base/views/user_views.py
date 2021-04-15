@@ -162,8 +162,11 @@ def unsetFavorite(request, pk):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getFavorites(request):
+
+    upper = int(request.GET.get('loadFavoritesCount', None))
     user = request.user
-    favorites = user.favorite_set.all()
+    favoritesAll = user.favorite_set.all()
+    favorites = favoritesAll[0:upper]
     serializer = FavoriteSerializer(favorites, many=True)
     
     my_list = list()
@@ -174,7 +177,9 @@ def getFavorites(request):
     
     print(my_list)
 
-    return Response(my_list)
+    size = True if (len(my_list) == len(favoritesAll)) else False
+
+    return Response({'data': my_list, 'isEndOfFeed': size })
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
