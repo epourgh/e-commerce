@@ -1,7 +1,7 @@
 import React from 'react';
 import Product from './product.component';
 import { ShopList } from '../../state/data-types/index';
-import { Grid } from 'semantic-ui-react'
+import { Grid, Message } from 'semantic-ui-react'
 
 interface ItemListReducer {
     data: ShopList[];
@@ -25,7 +25,17 @@ const ProductList: React.FC<ItemListProps> = ({ props }): JSX.Element => {
             </Grid>
         )
     } else {
-        return <div></div>;
+        return (
+            <Grid>
+                <Grid.Column textAlign="center">
+                    <Message
+                        icon='list alternate'
+                        header='Category is Empty'
+                        content='This category is currently inventory. Check again with us soon, inventory is in the process of being restocked!' info
+                    />
+                </Grid.Column>
+            </Grid>
+        );
     }
 }
 

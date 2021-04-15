@@ -16,6 +16,10 @@ const CategoryPage = ({ match }) => {
         fetchProductListByCategory({ id: match.params.id, loadProductsCount }); /* eslint-disable react-hooks/exhaustive-deps */
     }, [])
 
+    useEffect(() => {
+        console.log(productList.data)
+    }, [productList])
+
     const ViewMoreOrders = (e) => {
         e.preventDefault();
         setLoadProductsCount(loadProductsCount + 3)
