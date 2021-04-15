@@ -63,6 +63,12 @@
         ],
         "react-svg": [
             "./node_modules/react-svg/dist/index.d.ts"
+        ],
+        "hamburger-react": [
+            "./node_modules/hamburger-react/dist-esm/index.js"
+        ],
+        "react-burger-menu": [
+            "./node_modules/react-burger-menu/dist/react-burger-menu.js"
         ]
     },
     "plugins": [{ "name": "typescript-plugin-css-modules/index" }]

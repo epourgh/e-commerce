@@ -6,8 +6,6 @@ import { Container, Button, Message, Grid } from 'semantic-ui-react'
 import ProductList from '../components/home/productList.component';
 import globalStyles from '../styles/Global.module.scss'
 
-
-
 const CategoryPage = ({ match }) => {
 
     const [productList, userInfo] = useTypedSelector((state) => [state.productList, state.userInfo]);

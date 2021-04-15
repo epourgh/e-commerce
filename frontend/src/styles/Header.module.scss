@@ -7,9 +7,6 @@
     width: 100vw;
 }
 
-.navbar {
-}
-
 .navbar, .navbar li {
     list-style:none;
     display: inline-block;
@@ -59,4 +56,30 @@
     height: auto;
     vertical-align: middle;
     padding: 0;
+}
+
+.hamburger {
+    vertical-align: bottom !important;
+}
+
+.isLoggedInMenuItems {
+    margin: 0;
+    padding: 0;
+    padding-top: 2em;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .navbar {
+        margin: .5em;
+        padding: 0;
+    }
+
+    .isLoggedInMenuItems {
+        display: grid;
+    }
+
+    .isLoggedInMenuItems li {
+        padding: 1em;
+    }
 }

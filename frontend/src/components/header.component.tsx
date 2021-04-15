@@ -6,14 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from "react-router-dom";
 import styles from '../styles/Header.module.scss'
 import { useActions } from '../hooks/useActions';
+import { UserInfo } from '../state/data-types/index';
+import { useState } from 'react'
 
 import { useTypedSelector } from '../hooks/useTypedSelector';
-import { ReactSVG } from 'react-svg'
+import Hamburger from 'hamburger-react'
 
-const IsLoggedIn = () => {
-
-    const userInfo = useTypedSelector((state) => state.userInfo.data);
+const IsLoggedIn: React.FC<{ isOpen: boolean, userInfo: UserInfo }> = ({isOpen, userInfo}) => {
     const { UserLogout } = useActions();
+
 
     const logoutHandler = () => {
         console.log('logout')
@@ -23,18 +24,27 @@ const IsLoggedIn = () => {
     if (userInfo._id) {
         return (
             <>
-                <li>
-                    <FontAwesomeIcon icon={faShippingFast} className={styles.faIcons} />&nbsp;&nbsp;<Link to="/user/orders/" replace> Orders</Link>
-                </li>
-                <li>
-                    <Icon name='star' />&nbsp;&nbsp;<Link to="/user/favorites/" replace> Favorites</Link>
-                </li>
-                <li>
-                    <FontAwesomeIcon icon={faUser} className={styles.faIcons} />&nbsp;&nbsp;<Link to="/user/profile" replace> {userInfo.username}</Link>
-                </li>
-                <li>
-                    <FontAwesomeIcon icon={faSignOutAlt} className={styles.faIcons} />&nbsp;&nbsp;<span className={styles.signout} onClick={() => logoutHandler()}> Sign Out</span>
-                </li>
+
+                {
+                    (isOpen)
+                        ?
+                        <ul className={styles.isLoggedInMenuItems}>
+                            <li>
+                                <FontAwesomeIcon icon={faShippingFast} className={styles.faIcons} />&nbsp;&nbsp;<Link to="/user/orders/" replace> Orders</Link>
+                            </li>
+                            <li>
+                                <Icon name='star' />&nbsp;&nbsp;<Link to="/user/favorites/" replace> Favorites</Link>
+                            </li>
+                            <li>
+                                <FontAwesomeIcon icon={faUser} className={styles.faIcons} />&nbsp;&nbsp;<Link to="/user/profile" replace> {userInfo.username}</Link>
+                            </li>
+                            <li>
+                                <FontAwesomeIcon icon={faSignOutAlt} className={styles.faIcons} />&nbsp;&nbsp;<span className={styles.signout} onClick={() => logoutHandler()}> Sign Out</span>
+                            </li>
+                        </ul>
+                        :
+                        <></>
+                }
                 
             </>
         );
@@ -44,14 +54,24 @@ const IsLoggedIn = () => {
     
 }
 
-
 const Header = () => {
 
     const cartCount = useTypedSelector((state) => state.cart.total.count);
+    const userInfo = useTypedSelector((state) => state.userInfo.data);
+    const [isOpen, setOpen] = useState(false)
 
     return (
         <header className={styles.header}>
             <ul className={styles.navbar}>
+                {
+                    (userInfo._id)
+                    ?
+                    <li className={styles.hamburger} >
+                        <Hamburger toggled={isOpen} toggle={setOpen} />
+                    </li>
+                    :
+                    <></>
+                }
                 <li>
                     <Link to="/" replace>
                         <img src='./images/circle.png' className={styles.logo} />
@@ -79,7 +99,7 @@ const Header = () => {
                         }
                     </Link>
                 </li>
-                <IsLoggedIn />
+                <IsLoggedIn isOpen={isOpen} userInfo={userInfo} />
             </ul>
         </header>
     )
