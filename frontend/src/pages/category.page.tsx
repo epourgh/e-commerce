@@ -28,27 +28,27 @@ const CategoryPage = ({ match }) => {
             <h1>Latest Products</h1>
             <Loading status={{ loading: productList.loading, error: productList.error }} />
             <ProductList props={{ data: productList.data, loading: productList.loading, error: productList.error }} />
-            {
-                (productList.data.length < 3)
-                ?
-                <></>
-                :
-                (
-                    (!productList.isEndOfFeed) 
-                    ?
-                    <Button onClick={(e) => ViewMoreOrders(e)}>View More Orders</Button>        
-                    :  
-                    <Grid>
-                        <Grid.Column textAlign="center">
-                            <Message
-                                icon='list alternate'
-                                header='No More to Show'
-                                content='These are all the products we have displayed in this category. If you need assistance looking for an order, let us know.' info
-                            />
-                        </Grid.Column>
-                    </Grid>
-                )
-            }
+                <Grid>
+                    <Grid.Column textAlign="center">
+                    {
+                        (productList.data.length < 3)
+                        ?
+                        <></>
+                        :
+                        (
+                        (!productList.isEndOfFeed) 
+                        ?
+                        <Button onClick={(e) => ViewMoreOrders(e)}>View More Products</Button>        
+                        :  
+                        <Message
+                            icon='list alternate'
+                            header='No More to Show'
+                            content='These are all the products we have displayed in this category. If you need assistance looking for an order, let us know.' info
+                        />
+                        )
+                    }
+                    </Grid.Column>
+                </Grid>
         </Container>
 
 )

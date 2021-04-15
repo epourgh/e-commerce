@@ -18,14 +18,10 @@ const ProductList: React.FC<ItemListProps> = ({ props }): JSX.Element => {
 
     if (!error && !loading && data.length) {
         return (
-            <Grid columns={4} divided='vertically'>
-                <Grid.Row>
-                    {data.map((product: ShopList): JSX.Element | undefined => (
-                        <Grid.Column key={product._id}>
-                            <Product product={product} />
-                        </Grid.Column>
-                    ))}
-                </Grid.Row>
+            <Grid doubling columns={3}>
+                {data.map((product: ShopList): JSX.Element | undefined => (
+                    <Product product={product} />
+                ))}
             </Grid>
         )
     } else {
