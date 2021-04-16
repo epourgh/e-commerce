@@ -14,7 +14,8 @@ const CheckoutSteps: React.FC<StepsProps> = ({ step }) => {
 
     return (
         <Container>
-            <Grid>
+
+            <Grid className={styles.stepsLink}>
                 <Grid.Column textAlign="center">
                     <Step.Group unstackable>
                         <Step disabled={userId !== 0}>
@@ -56,6 +57,27 @@ const CheckoutSteps: React.FC<StepsProps> = ({ step }) => {
                 </Grid.Column>
             </Grid>
 
+            <Breadcrumb className={styles.breadcrumbLink}>
+                <Breadcrumb.Section active={step === 1}>
+                    {(step === 1 || userId !== 0) ? <>Login</> : <Link to="/user/login">Login</Link>}
+                </Breadcrumb.Section>
+                <Breadcrumb.Divider icon='right angle' />
+                <Breadcrumb.Section active={step === 2}>
+                    {(step === 2) ? <>Cart</> : <Link to="/cart/">Cart</Link>}
+                </Breadcrumb.Section>
+                <Breadcrumb.Divider icon='right angle' />
+                <Breadcrumb.Section active={step === 3}>
+                    {(step === 3) ? <>Shipping</> : (address.length) ? <Link to="/cart/shipping">Shipping</Link> : <>Shipping</>}
+                </Breadcrumb.Section>
+                <Breadcrumb.Divider icon='right angle' />
+                <Breadcrumb.Section active={step === 4}>
+                    {(step === 4) ? <>Payment</> : (address.length) ? <Link to="/cart/payment">Payment</Link> : <>Payment</>}
+                </Breadcrumb.Section>
+                <Breadcrumb.Divider icon='right angle' />
+                <Breadcrumb.Section active={step === 5}>
+                    {(step === 5) ? <>Review</> : (payment !== '') ? <Link to="/cart/order">Review</Link> : <>Review</>}
+                </Breadcrumb.Section>
+            </Breadcrumb>
             <br /><br />
         </Container>
     )

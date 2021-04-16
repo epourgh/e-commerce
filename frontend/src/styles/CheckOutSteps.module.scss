@@ -1,0 +1,19 @@
+.breadcrumbLink {
+    display: none !important
+}
+
+.stepsLink {
+    display: block !important
+}
+
+@media only screen and (max-width: 1200px) {
+
+    .breadcrumbLink {
+        display: block !important
+    }
+
+    .stepsLink {
+        display: none !important
+    }
+
+}
