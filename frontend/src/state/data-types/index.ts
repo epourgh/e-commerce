@@ -2,7 +2,7 @@ export interface UserInfo { _id: number, name: string, username: string, token: 
 
 export interface Review { comment: string; createdAt: string; name: string; product: number; rating: number; user: number; _id: number; }
 
-export interface ShopList { _id: number, name: string, image: string, description: string, brand: string, category: string, countInStock: number, rating: number, numReviews: number, numFavorites: number, price: number, reviews?: Review[] };
+export interface ShopList { _id: number, createdAt: string, name: string, image: string, description: string, brand: string, category: string, countInStock: number, rating: number, numReviews: number, numFavorites: number, price: number, reviews?: Review[] };
 
 export interface Address { address: string, city: string, country: string, postalCode: string };
 

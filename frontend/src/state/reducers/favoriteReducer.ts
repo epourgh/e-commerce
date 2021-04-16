@@ -6,6 +6,7 @@ interface SampleReducer {
     error?: string | null;
     success?: boolean;
     all?: any,
+    isEndOfFeed?: boolean,
     productPage?: any
 }
 
@@ -14,6 +15,7 @@ const initialState = {
     error: null,
     success: false,
     all: [],
+    isEndOfFeed: false,
     productPage: {}
 }
 
