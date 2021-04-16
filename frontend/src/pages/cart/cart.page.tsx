@@ -21,7 +21,7 @@ const CartPage = () => {
             <br />
 
             <CheckoutSteps step={2} />
-            <Grid celled='internally'>
+            <Grid celled='internally' doubling columns={2}>
                 <Grid.Row>
                     <Grid.Column width={11}>
                         <h1>Cart:</h1>

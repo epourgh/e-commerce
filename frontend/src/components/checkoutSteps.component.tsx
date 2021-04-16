@@ -14,7 +14,6 @@ const CheckoutSteps: React.FC<StepsProps> = ({ step }) => {
 
     return (
         <Container>
-
             <Grid className={styles.stepsLink}>
                 <Grid.Column textAlign="center">
                     <Step.Group unstackable>

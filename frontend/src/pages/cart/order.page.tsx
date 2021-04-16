@@ -55,7 +55,7 @@ const OrderPage = () => {
             <CheckoutSteps step={5} />
             <br/>
             <br/>
-            <Grid>
+            <Grid doubling columns={2}>
                 <Grid.Row>
                     <Grid.Column width={11}>
                         <h2>Shipping:</h2>
