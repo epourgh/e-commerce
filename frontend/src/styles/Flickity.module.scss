@@ -1,0 +1,17 @@
+.carouselDesktop {
+    display: block !important
+}
+
+.carouselMobile {
+    display: none !important
+}
+
+@media screen and ( max-width: 1200px ) {
+    .carouselDesktop {
+        display: none !important
+    }
+
+    .carouselMobile {
+        display: block !important
+    }
+}

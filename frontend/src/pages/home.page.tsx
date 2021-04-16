@@ -7,9 +7,7 @@ import globalStyles from '../styles/Global.module.scss'
 import styles from '../styles/Home.module.scss'
 import { Link } from "react-router-dom";
 
-import Flickity from 'react-flickity-component'
-import "../../node_modules/flickity/dist/flickity.min.css"; 
-
+import Carousel from '../components/home/carousel.component'
 
 const HomePage: React.FC = () => {
 
@@ -21,35 +19,9 @@ const HomePage: React.FC = () => {
         fetchProductList({}); /* eslint-disable react-hooks/exhaustive-deps */
     }, [])
 
-    const flickityOptions = {
-        initialIndex: 0,
-        freeScroll: false,
-        prevNextButtons: false,
-        pageDots: false,
-        wrapAround: true,
-        groupCells: 2,
-        autoPlay: 5000,
-        pauseAutoPlayOnHover: true,
-        fullscreen: false,
-        lazyLoad: true,
-        fade: true,
-        dragThreshold: 10
-    }
-
     return (
         <>
-            <Flickity
-                className={'carousel'} // default ''
-                elementType={'div'} // default 'div'
-                options={flickityOptions} // takes flickity options {}
-                disableImagesLoaded={false} // default false
-                reloadOnUpdate // default false
-                static // default false
-            >
-                <img src="/images/electronics-carousal.png" />
-                <img src="/images/beauty-carousal.png" />
-                <img src="/images/toys-carousal.png" />
-            </Flickity>
+            <Carousel />
             <Container className={globalStyles.HomeBodyContainer}>
                 <br/>
                 <Segment>
