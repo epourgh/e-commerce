@@ -1,6 +1,13 @@
-FROM node:14.14.0-alpine
-WORKDIR "/app"
-COPY ./package.json ./
+FROM node:10
+
+USER root
+WORKDIR /frontend
+COPY package*.json .
+
 RUN npm install
+
 COPY . .
-CMD ["npm", "run", "dev"]
+
+EXPOSE 8080
+
+CMD [ "npm", "start" ]

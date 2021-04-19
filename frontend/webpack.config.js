@@ -5,6 +5,7 @@ module.exports = {
     mode: 'development',
     devtool: 'source-map',
     devServer: {
+        host: '0.0.0.0',
         port: 1337
     },
     entry: { index: path.resolve(__dirname, "src", "index.tsx") },
