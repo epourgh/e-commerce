@@ -10,6 +10,7 @@ interface SampleReducer {
 
 const emptyItemDetailsPayload = {
     _id: 0,
+    createdAt: '',
     name: '',
     image: '',
     description: '',
@@ -19,6 +20,7 @@ const emptyItemDetailsPayload = {
     countInStock: 0,
     rating: 0,
     numReviews: 0,
+    numFavorites: 0,
     token: '',
     reviews: []
 };

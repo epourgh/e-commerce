@@ -1,4 +1,5 @@
-export interface UserInfo { _id: number, name: string, username: string, token: string };
+export interface UserInfo { _id: number, name: string, username: string, token: string, 
+                            id?: number, usernmae?: string, email?: string, isAdmin?: boolean, cuid?: string};
 
 export interface Review { comment: string; createdAt: string; name: string; product: number; rating: number; user: number; _id: number; }
 

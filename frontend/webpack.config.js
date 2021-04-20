@@ -2,11 +2,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     devtool: 'source-map',
     devServer: {
         host: '0.0.0.0',
-        port: 1337
+        port: 1337,
+        compress: true,
+        disableHostCheck: true, 
     },
     entry: { index: path.resolve(__dirname, "src", "index.tsx") },
     output: {

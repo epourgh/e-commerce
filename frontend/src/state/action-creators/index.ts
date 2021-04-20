@@ -7,7 +7,7 @@ import { ActionType } from '../action-types/index'
 import { ShopList, Address, SampleOrderReducer, SampleRefundReducer, SamplePaymentIntentReducer, 
          SamplePaymentReducer, SampleReviewReducer, SampleProductReducer, SampleFavoriteReducer } from '../data-types/index';
 
-const backendURL = 'http://127.0.0.1:8000';
+const backendURL = 'http://127.0.0.1';
 
 interface Params {
     id?: number
