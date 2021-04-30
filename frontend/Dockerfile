@@ -1,7 +1,15 @@
-FROM node:14.16-alpine
-USER root
-WORKDIR /frontend
-COPY . .
+FROM node:alpine as builder
+WORKDIR '/frontend'
+
+# Install yarn and other dependencies via apk
+RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
+
+COPY ./package.json ./
 RUN npm install
-EXPOSE 8080
-CMD [ "npm", "run", "build" ]
+COPY . .
+RUN npm run build
+
+FROM nginx
+EXPOSE 3000
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/build /usr/share/nginx/html

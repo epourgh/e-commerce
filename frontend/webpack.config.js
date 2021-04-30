@@ -2,11 +2,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-    mode: 'production',
     devtool: 'source-map',
     devServer: {
-        host: '0.0.0.0',
-        port: 1337,
+        port: 3000,
         compress: true,
         disableHostCheck: true, 
     },
