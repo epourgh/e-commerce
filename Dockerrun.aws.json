@@ -1,0 +1,33 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "frontend",
+      "image": "epourgh/ecommerce-frontend",
+      "hostname": "frontend",
+      "essential": false,
+      "memory": 200
+    },
+    {
+      "name": "backend",
+      "image": "epourgh/ecommerce-backend",
+      "hostname": "api",
+      "essential": false,
+      "memory": 200
+    },
+    {
+      "name": "webserver",
+      "image": "epourgh/ecommerce-webserver",
+      "hostname": "webserver",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["frontend", "backend"],
+      "memory": 200
+    }
+  ]
+}

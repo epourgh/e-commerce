@@ -20,3 +20,15 @@ after_success:
   - docker push epourgh/ecommerce-frontend
   - docker push epourgh/ecommerce-webserver
   - docker push epourgh/ecommerce-backend
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'ecommerce'
+  env: 'Ecommerce-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-354855292174'
+  bucket_path: 'docker-ecommerce'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
