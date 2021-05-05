@@ -1,9 +1,6 @@
 FROM node:alpine as builder
 WORKDIR '/frontend'
 
-# Install yarn and other dependencies via apk
-RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
-
 COPY ./package.json ./
 RUN npm install
 COPY . .

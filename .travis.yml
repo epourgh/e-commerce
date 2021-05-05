@@ -28,6 +28,7 @@ deploy:
   env: 'Ecommerce-env'
   bucket_name: 'elasticbeanstalk-us-east-2-354855292174'
   bucket_path: 'docker-ecommerce'
+  skip_cleanup: true
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
