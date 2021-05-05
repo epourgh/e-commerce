@@ -1,8 +1,8 @@
-FROM node:alpine as builder
+FROM node:14.16-alpine as builder
 WORKDIR '/frontend'
 
 COPY ./package.json ./
-RUN npm install --legacy-peer-deps
+RUN npm install
 COPY . .
 RUN npm run build
 
