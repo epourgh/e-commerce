@@ -1,12 +1,13 @@
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Container, Table } from 'semantic-ui-react'
 import globalStyles from '../../styles/Global.module.scss'
 import { Link } from "react-router-dom";
-import { StripeProvider, Elements} from 'react-stripe-elements';
-import StripeForm from '../../components/payment/stripe.component'
+import dotenv from 'dotenv'
 
 const SubmittedPage = ({ match }) => {
+
+    dotenv.config()
 
     const [token, order] = useTypedSelector((state) => [state.userInfo.data.token, state.order.data]);
 

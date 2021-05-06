@@ -70,6 +70,9 @@
         ],
         "react-burger-menu": [
             "./node_modules/react-burger-menu/dist/react-burger-menu.js"
+        ],
+        "dotenv": [
+            "./node_modules/dotenv/lib/main.js"
         ]
     },
     "plugins": [{ "name": "typescript-plugin-css-modules/index" }]

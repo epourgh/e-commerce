@@ -8,6 +8,9 @@
     "build": "webpack serve --host 0.0.0.0 --config ./webpack.config.js --mode production"
   },
   "keywords": [],
+  "browser": {
+    "[module-name]": false
+  },
   "author": "",
   "license": "ISC",
   "proxy": "http://127.0.0.1:8000",
@@ -52,6 +55,8 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^7.0.2",
     "flickity": "^2.2.2",
     "hamburger-react": "^2.4.0",
     "moment": "^2.29.1",
