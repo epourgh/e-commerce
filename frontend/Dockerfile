@@ -1,4 +1,4 @@
-FROM node:alpine as builder
+FROM node:14.16-alpine as builder
 WORKDIR '/frontend'
 
 # Install yarn and other dependencies via apk
