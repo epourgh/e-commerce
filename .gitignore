@@ -12,7 +12,7 @@ backend/base/urls/__pycache__/
 backend/base/views/__pycache__/
 
 # frontend files
-frontend/src/components/payment/promise.component.tsx
+frontend/.env
 frontend/dist/
 frontend/node_modules/
 frontend/package-lock.json
