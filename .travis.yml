@@ -4,12 +4,6 @@ language: generic
 services:
   - docker
 
-before_install:
-  - docker build -t epourgh/react-test -f ./frontend/Dockerfile.dev ./frontend
-
-script:
-  - docker run -e CI=true epourgh/react-test npm test
-
 after_success:
   - docker build -t epourgh/ecommerce-frontend ./frontend
   - docker build -t epourgh/ecommerce-webserver ./webserver
