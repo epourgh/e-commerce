@@ -74,7 +74,7 @@ const Header = () => {
                 }
                 <li>
                     <Link to="/" replace>
-                        <img src='./images/circle.png' className={styles.logo} />
+                        <img src='./images/circle.jpg' className={styles.logo} />
                     </Link>
                 </li>
                 <li>

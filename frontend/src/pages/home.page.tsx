@@ -34,31 +34,31 @@ const HomePage: React.FC = () => {
                 <Grid doubling columns={5}>
                     <Grid.Column className={globalStyles.card}>
                         <Link to='./category/1'>
-                            <Image src='/images/electronics.png' className={styles.gridImage} />
+                            <Image src='/images/electronics.jpg' className={styles.gridImage} />
                             <h5>Electronics</h5>
                         </Link>
                     </Grid.Column>
                     <Grid.Column className={globalStyles.card}>
                         <Link to='./category/2'>
-                            <Image src='/images/videogames.png' className={styles.gridImage} />
+                            <Image src='/images/videogames.jpg' className={styles.gridImage} />
                             <h5>Video games</h5>
                         </Link>
                     </Grid.Column>
                     <Grid.Column className={globalStyles.card}>
                         <Link to='./category/3'>
-                            <Image src='/images/shoes.png' className={styles.gridImage} />
+                            <Image src='/images/shoes.jpg' className={styles.gridImage} />
                             <h5>Shoes</h5>
                         </Link>
                     </Grid.Column>
                     <Grid.Column className={globalStyles.card}>
                         <Link to='./category/4'>
-                            <Image src='/images/beauty.png' className={styles.gridImage} />
+                            <Image src='/images/beauty.jpg' className={styles.gridImage} />
                             <h5>Beauty & Health</h5>
                         </Link>
                     </Grid.Column>
                     <Grid.Column className={globalStyles.card}>
                         <Link to='./category/5'>
-                            <Image src='/images/toys.png' className={styles.gridImage} />
+                            <Image src='/images/toys.jpg' className={styles.gridImage} />
                             <h5>Toys & Kids</h5>
                         </Link>
                     </Grid.Column>

@@ -44,9 +44,9 @@ const Carousel = () => {
                     reloadOnUpdate // default false
                     static // default false
                 >
-                    <img src="/images/electronics-carousal.png" />
-                    <img src="/images/beauty-carousal.png" />
-                    <img src="/images/toys-carousal.png" />
+                    <img src="/images/electronics-carousal.jpg" />
+                    <img src="/images/beauty-carousal.jpg" />
+                    <img src="/images/toys-carousal.jpg" />
                 </Flickity>
             </div>
             <div className={styles.carouselMobile}>
@@ -58,9 +58,9 @@ const Carousel = () => {
                     reloadOnUpdate // default false
                     static // default false
                 >
-                    <img src="/images/electronics-carousal-mobile.png" />
-                    <img src="/images/beauty-carousal-mobile.png" />
-                    <img src="/images/toys-carousal-mobile.png" />
+                    <img src="/images/electronics-carousal-mobile.jpg" />
+                    <img src="/images/beauty-carousal-mobile.jpg" />
+                    <img src="/images/toys-carousal-mobile.jpg" />
                 </Flickity>
             </div>
         </div>
