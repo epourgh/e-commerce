@@ -1,19 +1,20 @@
 sudo: required
 language: generic
+install: travis_wait 30 mvn install
 
 services:
   - docker
 
 after_success:
+  - docker build -t epourgh/ecommerce-frontend ./frontend
   - docker build -t epourgh/ecommerce-webserver ./webserver
   - docker build -t epourgh/ecommerce-backend ./backend
-  - docker build -t epourgh/ecommerce-frontend ./frontend
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
+  - docker push epourgh/ecommerce-frontend
   - docker push epourgh/ecommerce-webserver
   - docker push epourgh/ecommerce-backend
-  - docker push epourgh/ecommerce-frontend
 
 deploy:
   provider: elasticbeanstalk
