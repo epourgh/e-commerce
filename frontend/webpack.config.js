@@ -8,6 +8,8 @@ module.exports = {
         port: 3000,
         compress: true,
         disableHostCheck: true, 
+        hot: false,
+        liveReload: false
     },
     entry: { index: path.resolve(__dirname, "src", "index.tsx") },
     output: {
@@ -58,6 +60,5 @@ module.exports = {
         new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "src/static", "index.html")
         })
-    ],
-    watch: true
+    ]
 };
