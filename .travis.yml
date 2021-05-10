@@ -5,10 +5,7 @@ services:
   - docker
 
 script:
-  - npm install -g codecov
-  - npm test && codecov
   - CI=false npm run build
-  - npm run docs
 
 after_success:
   - travis_wait 30 docker build -t epourgh/ecommerce-frontend ./frontend
