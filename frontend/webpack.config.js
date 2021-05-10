@@ -17,6 +17,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss', '.css'],
     },
+    stats: 'errors-only',
     module: {
         rules: [
             {

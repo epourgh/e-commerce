@@ -4,9 +4,6 @@ language: generic
 services:
   - docker
 
-env: 
-  CI: false
-
 after_success:
   - build -t epourgh/ecommerce-frontend ./frontend
   - build -t epourgh/ecommerce-webserver ./webserver
