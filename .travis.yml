@@ -5,9 +5,9 @@ services:
   - docker
 
 after_success:
-  - build -t epourgh/ecommerce-frontend ./frontend
-  - build -t epourgh/ecommerce-webserver ./webserver
-  - build -t epourgh/ecommerce-backend ./backend
+  - docker build -t epourgh/ecommerce-frontend ./frontend
+  - docker build -t epourgh/ecommerce-webserver ./webserver
+  - docker build -t epourgh/ecommerce-backend ./backend
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
