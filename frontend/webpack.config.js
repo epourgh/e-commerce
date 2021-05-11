@@ -8,8 +8,6 @@ module.exports = {
         port: 3000,
         compress: true,
         disableHostCheck: true, 
-        hot: false,
-        liveReload: false
     },
     entry: { index: path.resolve(__dirname, "src", "index.tsx") },
     output: {
@@ -20,6 +18,7 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss', '.css'],
     },
     stats: 'errors-only',
+    watch: false,
     module: {
         rules: [
             {
