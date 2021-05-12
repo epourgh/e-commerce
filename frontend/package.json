@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --host 0.0.0.0 --config ./webpack.config.js --mode development",
-    "build": "webpack serve --host 0.0.0.0 --config ./webpack.config.js --mode production"
+    "old-dev": "webpack serve --host 0.0.0.0 --port 3000 --config ./webpack.config.js --mode development",
+    "old-build": "webpack serve --host 0.0.0.0  --port 3000 --config ./webpack.config.js --mode production",
+    "serve": "live-server --port 3000 dist/",
+    "build": "webpack --config ./webpack.prod.js",
+    "dev-server": "webpack serve --open --config ./webpack.dev.js"
   },
   "keywords": [],
   "browser": {
@@ -36,6 +39,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.2.0",
+    "live-server": "^1.2.1",
     "sass": "^1.32.8",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
@@ -45,7 +49,8 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.24.3",
     "webpack-cli": "^4.5.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.13.8",

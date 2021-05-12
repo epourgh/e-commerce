@@ -3,22 +3,15 @@ const path = require("path");
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-    devtool: 'source-map',
-    devServer: {
-        port: 3000,
-        compress: true,
-        disableHostCheck: true, 
-    },
     entry: { index: path.resolve(__dirname, "src", "index.tsx") },
     output: {
-        filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js',
     },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss', '.css'],
     },
     stats: 'errors-only',
-    watch: false,
     module: {
         rules: [
             {
@@ -39,7 +32,6 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    // Creates `style` nodes from JS strings
                     { loader: "style-loader" },
                     // Translates CSS into CommonJS
                     { loader: "css-loader", options: { modules: true } },  // to convert the resulting CSS to Javascript to be bundled (modules:true to rename CSS classes in output to cryptic identifiers, except if wrapped in a :global(...) pseudo class)
