@@ -4,9 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "old-dev": "webpack serve --host 0.0.0.0 --port 3000 --config ./webpack.config.js --mode development",
-    "old-build": "webpack serve --host 0.0.0.0  --port 3000 --config ./webpack.config.js --mode production",
-    "serve": "live-server --port 3000 dist/",
     "build": "webpack --config ./webpack.prod.js",
     "dev-server": "webpack serve --open --config ./webpack.dev.js"
   },
