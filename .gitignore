@@ -20,3 +20,4 @@ frontend/package-lock.json
 #misc
 .vscode/**
 **/.DS_Store
+error.log
